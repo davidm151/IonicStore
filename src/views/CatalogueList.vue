@@ -20,8 +20,9 @@
           <ion-label class="ion-text-wrap">
             <ion-img style="width: 270px; height: 250px;"  :src="item.image"></ion-img>
             <h1>{{ item.title }}</h1>
-            <h2>Price {{ item.price }}</h2>
+            <h2>{{ item.price }}€</h2>
             <p>{{ item.description }}</p>
+            <ion-button>Default</ion-button>
             <ion-chip color="secondary">
               <ion-label color="dark">{{ item.category }}</ion-label>
             </ion-chip>

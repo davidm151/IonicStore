@@ -17,11 +17,24 @@
       <ion-grid>
         <ion-row>
           <ion-col v-for="item in items" :key="item.title">
-            <ion-img :src="item.image"></ion-img>
-            {{ item.title }}
-            <ion-chip color="secondary">
-              <ion-label color="dark">{{ item.category }}</ion-label>
+            <ion-card>
+            <ion-img style="width: 270px; height: 250px;" :src="item.image"></ion-img>
+              <ion-text color="dark">
+              <h1>{{ item.title }}</h1>
+              </ion-text>
+              <ion-text color="dark">
+              <p>
+                This is content, without any paragraph or header tags,
+                within an ion-card-content element.
+              </p>
+              </ion-text>
+              <ion-text color="dark">
+              <h2>{{ item.price }}€</h2>
+              </ion-text>
+                <ion-chip color="danger">
+              <ion-text color="dark">{{ item.category }}</ion-text>
             </ion-chip>
+            </ion-card>
           </ion-col>
         </ion-row>
       </ion-grid>
