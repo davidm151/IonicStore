@@ -21,7 +21,12 @@
                     <ion-chip color="secondary">
                       <ion-label color="dark">{{ items.category }}</ion-label>
                     </ion-chip>
+                    <br/>
+                    <br/>
+                    <div>
+                    <ion-icon @click="presentActionSheet" size="large" :src="ellipsisVerticalOutline" />
                     <ion-img style="width: 270px; height: 250px;"  :src="items.image"></ion-img>
+                    </div>
                     <h1>{{ items.title }}</h1>
                     <p>{{ items.description }}</p>
                     <ion-badge color="primary">Price: {{ items.price }}€</ion-badge>
@@ -57,10 +62,12 @@
         </template>
 
 <script >
-import { IonButtons, IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, IonToolbar } from '@ionic/vue';
+import { IonButtons, actionSheetController,IonContent, IonHeader, IonMenuButton, IonPage, IonTitle, IonToolbar } from '@ionic/vue';
 import modal from '../components/Modal.vue';
 import modal2 from '../components/Modal2.vue';
 import axios from 'axios';
+import { caretForwardCircle,createOutline, close, heart, trash, share } from 'ionicons/icons';
+import { ellipsisVerticalOutline } from 'ionicons/icons';
 export default {
   name: 'CatalogueList',
   components: {
@@ -86,7 +93,46 @@ export default {
           this.items = response.data
         })
   },
+  setup(){
+    return{
+      ellipsisVerticalOutline
+    }
+  },
+
   methods: {
+    async presentActionSheet() {
+      const actionSheet = await actionSheetController
+          .create({
+            header: 'Albums',
+            cssClass: 'my-custom-class',
+            buttons: [
+              {
+                text: 'Delete',
+                role: 'destructive',
+                icon: trash,
+                handler: () => {
+                  console.log('Delete clicked')
+                },
+              },
+              {
+                text: 'Modify',
+                icon: createOutline,
+                handler: () => {
+                  console.log('Share clicked')
+                },
+              },
+              {
+                text: 'Cancel',
+                icon: close,
+                role: 'cancel',
+                handler: () => {
+                  console.log('Cancel clicked')
+                },
+              },
+            ],
+          });
+      return actionSheet.present();
+    },
     showModal() {
       this.isModalVisible = true;
     },

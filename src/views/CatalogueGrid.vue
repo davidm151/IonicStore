@@ -16,7 +16,6 @@
       </ion-header>
       <ion-button href="/catalogue/form" >Add item</ion-button>
       <ion-searchbar></ion-searchbar>
-
       <div v-if="data">
       <ion-grid>
         <ion-row>
